@@ -11,11 +11,12 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import de.cblicous.smallwebfluxdemo.SmallDemoApplication;
 import de.cblicous.smallwebfluxdemo.dto.Author;
 import reactor.core.publisher.Mono;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { AuthorService.class },webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = { AuthorService.class, SmallDemoApplication.class },webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @EnableConfigurationProperties
 public class AuthorServiceTest {
 
@@ -44,7 +45,7 @@ public class AuthorServiceTest {
             .uri("/resource")
             .exchange()
             .expectStatus()
-            .is4xxClientError()
+            .is2xxSuccessful()
             .expectBody();
     }
 
