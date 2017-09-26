@@ -21,6 +21,11 @@ public class AuthorService {
 	        .nullsFirst(String::compareToIgnoreCase); 
 
 	
+	/**
+	 * Mono is for either fire and forget or request-response 
+	 * @param id
+	 * @return
+	 */
 	public Mono<Author> loadUserFromComplexSystem(String id){
 		Author author = new Author();
 		author.setId(id);
@@ -30,6 +35,11 @@ public class AuthorService {
 		return Mono.justOrEmpty(author).delaySubscription(delay);
 	}
 	
+	/**
+	 * Flux is for streams 
+	 * @param message
+	 * @return
+	 */
 	public Flux<AuthorMessageResponse> sendMessageToAuthor(@RequestBody AuthorMessage message) {
         return Flux.just(message)
                 .map(msg -> {
