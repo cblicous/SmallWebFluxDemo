@@ -1,5 +1,8 @@
 package de.cblicous.smallwebfluxdemo.dto;
-
+/**
+* AuthorMessage, the Message DTO 
+*
+*/
 public class AuthorMessage {
 	private String authorId;
 	private String Message;
